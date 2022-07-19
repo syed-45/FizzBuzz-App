@@ -2,38 +2,25 @@ import { useState } from "react";
 
 function FizzBuzz(): JSX.Element {
 
-  const [counterValuesFromCurrentRender, queueRerenderWithNewCounterValues] =
+  const [counterValueFromCurrentRender, queueRerenderWithNewCounterValue] =
     useState(0);
-//   const [storedValuesFromCurrentRender, queueRerenderWithNewStoredValues] =
-//     useState<string[]>([]);
+  const [storedValuesFromCurrentRender, queueRerenderWithNewStoredValues] =
+    useState<string[]>([]);
 
-/*
-    [val,updateVal] = useState(0)
-    fizzArray = [0]
 
-    buttonClick() {
-        val++
-
-        IF val MOD 3 = 0 AND val mod 5 = 0 {
-            APPEND fizzArray WITH 'fizzbuzz'
-            UPDATE updateVal WITH 'fizzbuzz'
-        }
-        Else If (val MOD 3 = 0) {
-            APPEND fizzArray WITH 'fizz'
-        }
-    }
-*/
   const handleNextValue = () => {
-    queueRerenderWithNewCounterValues(counterValuesFromCurrentRender + 1);
+    queueRerenderWithNewCounterValue(counterValueFromCurrentRender + 1);
+    queueRerenderWithNewStoredValues([
+        ...storedValuesFromCurrentRender,
+        counterValueFromCurrentRender.toString(),
+      ]);
   };
-
-
 
 
   return (
     <>
       <h1>Fizz Buzz</h1>
-      <p>counter: {counterValuesFromCurrentRender}</p>
+      <p>counter: {storedValuesFromCurrentRender}</p>
       <button onClick={handleNextValue}>NEXT</button>
     </>
   );
