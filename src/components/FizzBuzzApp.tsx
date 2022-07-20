@@ -1,40 +1,39 @@
 import { useState } from "react";
 
 function FizzBuzz(): JSX.Element {
-
   const [counterValueFromCurrentRender, queueRerenderWithNewCounterValue] =
     useState(1);
   const [storedValuesFromCurrentRender, queueRerenderWithNewStoredValues] =
     useState<string[]>([]);
 
-
   const handleNextValue = () => {
     queueRerenderWithNewCounterValue(counterValueFromCurrentRender + 1);
-    
-    if (counterValueFromCurrentRender%5===0 && counterValueFromCurrentRender%3===0) {
-        queueRerenderWithNewStoredValues([
-            ...storedValuesFromCurrentRender,
-            'FizzBuzz ',
-          ]);
-    } else if (counterValueFromCurrentRender%3===0) {
-        queueRerenderWithNewStoredValues([
-            ...storedValuesFromCurrentRender,
-            'Fizz ',
-          ]);
-    } else if (counterValueFromCurrentRender%5===0) {
-        queueRerenderWithNewStoredValues([
-            ...storedValuesFromCurrentRender,
-            'Buzz ',
-          ]);
+
+    if (
+      counterValueFromCurrentRender % 5 === 0 &&
+      counterValueFromCurrentRender % 3 === 0
+    ) {
+      queueRerenderWithNewStoredValues([
+        ...storedValuesFromCurrentRender,
+        "FizzBuzz ",
+      ]);
+    } else if (counterValueFromCurrentRender % 3 === 0) {
+      queueRerenderWithNewStoredValues([
+        ...storedValuesFromCurrentRender,
+        "Fizz ",
+      ]);
+    } else if (counterValueFromCurrentRender % 5 === 0) {
+      queueRerenderWithNewStoredValues([
+        ...storedValuesFromCurrentRender,
+        "Buzz ",
+      ]);
     } else {
-        queueRerenderWithNewStoredValues([
-            ...storedValuesFromCurrentRender,
-            counterValueFromCurrentRender.toString()+' ',
-          ]);
+      queueRerenderWithNewStoredValues([
+        ...storedValuesFromCurrentRender,
+        counterValueFromCurrentRender.toString() + " ",
+      ]);
     }
-
   };
-
 
   return (
     <>
