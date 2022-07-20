@@ -2,18 +2,18 @@ import { useState } from "react";
 import fizzBuzzFunc from "./fizzbuzzlogic";
 
 function FizzBuzz(): JSX.Element {
-  const [counterValueFromCurrentRender, queueRerenderWithNewCounterValue] =
+  const [counter, setCounter] =
     useState(1);
 
-  const [storedValuesFromCurrentRender, queueRerenderWithNewStoredValues] =
+  const [storedCounts, setStoredCounts] =
     useState<string[]>([]);
 
   const handleNextValue = () => {
-    queueRerenderWithNewCounterValue(counterValueFromCurrentRender + 1);
+    setCounter(counter + 1);
 
-    const fizzbuzzValue = fizzBuzzFunc(counterValueFromCurrentRender);
-    queueRerenderWithNewStoredValues([
-      ...storedValuesFromCurrentRender,
+    const fizzbuzzValue = fizzBuzzFunc(counter);
+    setStoredCounts([
+      ...storedCounts,
       fizzbuzzValue + " ",
     ]);
   };
@@ -21,7 +21,7 @@ function FizzBuzz(): JSX.Element {
   return (
     <>
       <h1>FizzBuzz</h1>
-      <p>counter: {storedValuesFromCurrentRender}</p>
+      <p>counter: {storedCounts}</p>
       <button onClick={handleNextValue}>NEXT</button>
     </>
   );
