@@ -1,44 +1,22 @@
 import { useState } from "react";
+import fizzBuzzFunc from "./fizzbuzzlogic";
 
 function FizzBuzz(): JSX.Element {
-  const [counterValueFromCurrentRender, queueRerenderWithNewCounterValue] =
-    useState(1);
-  const [storedValuesFromCurrentRender, queueRerenderWithNewStoredValues] =
-    useState<string[]>([]);
+  const [counter, setCounter] = useState(1);
+
+  const [storedCounts, setStoredCounts] = useState<string[]>([]);
 
   const handleNextValue = () => {
-    queueRerenderWithNewCounterValue(counterValueFromCurrentRender + 1);
+    setCounter(counter + 1);
 
-    if (
-      counterValueFromCurrentRender % 5 === 0 &&
-      counterValueFromCurrentRender % 3 === 0
-    ) {
-      queueRerenderWithNewStoredValues([
-        ...storedValuesFromCurrentRender,
-        "FizzBuzz ",
-      ]);
-    } else if (counterValueFromCurrentRender % 3 === 0) {
-      queueRerenderWithNewStoredValues([
-        ...storedValuesFromCurrentRender,
-        "Fizz ",
-      ]);
-    } else if (counterValueFromCurrentRender % 5 === 0) {
-      queueRerenderWithNewStoredValues([
-        ...storedValuesFromCurrentRender,
-        "Buzz ",
-      ]);
-    } else {
-      queueRerenderWithNewStoredValues([
-        ...storedValuesFromCurrentRender,
-        counterValueFromCurrentRender.toString() + " ",
-      ]);
-    }
+    const fizzbuzzValue = fizzBuzzFunc(counter);
+    setStoredCounts([...storedCounts, fizzbuzzValue + " "]);
   };
 
   return (
     <>
-      <h1>Fizz Buzz</h1>
-      <p>counter: {storedValuesFromCurrentRender}</p>
+      <h1>FizzBuzz</h1>
+      <p>counter: {storedCounts}</p>
       <button onClick={handleNextValue}>NEXT</button>
     </>
   );
