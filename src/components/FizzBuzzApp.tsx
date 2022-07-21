@@ -2,20 +2,15 @@ import { useState } from "react";
 import fizzBuzzFunc from "./fizzbuzzlogic";
 
 function FizzBuzz(): JSX.Element {
-  const [counter, setCounter] =
-    useState(1);
+  const [counter, setCounter] = useState(1);
 
-  const [storedCounts, setStoredCounts] =
-    useState<string[]>([]);
+  const [storedCounts, setStoredCounts] = useState<string[]>([]);
 
   const handleNextValue = () => {
     setCounter(counter + 1);
 
     const fizzbuzzValue = fizzBuzzFunc(counter);
-    setStoredCounts([
-      ...storedCounts,
-      fizzbuzzValue + " ",
-    ]);
+    setStoredCounts([...storedCounts, fizzbuzzValue + " "]);
   };
 
   return (
